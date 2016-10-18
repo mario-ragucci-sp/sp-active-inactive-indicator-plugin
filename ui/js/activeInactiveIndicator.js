@@ -79,7 +79,30 @@ var mapping = [
 ];
 /* Configuration ends here
 */
+/* A helper method for really old browsers
+*/
+if (!Array.prototype.filter)
+{
+   Array.prototype.filter = function(fun /*, thisp*/)
+   {
+      var len = this.length;
+      if (typeof fun != "function")
+      throw new TypeError();
 
+      var res = new Array();
+      var thisp = arguments[1];
+      for (var i = 0; i < len; i++)
+      {
+         if (i in this)
+         {
+            var val = this[i]; // in case fun mutates this
+            if (fun.call(thisp, val, i, this))
+            res.push(val);
+         }
+      }
+      return res;
+   };
+}
 /* Some static variables
 */
 var RED_DOT_CLASSNAME 		= "riskIndicator ri_ff0000";
@@ -96,10 +119,13 @@ jQuery(document).ready(function(){
 			var columnKey = current.childNodes[1].innerText;
 			/* Check if text of the first column equals an entry in our replacement map
 			*/
-			if(mapping.filter(function(e) e.name == columnKey).length > 0) {
+			var searchArray = mapping.filter(function(obj) {
+				return (obj.name == columnKey);
+			});
+			if(searchArray.length > 0) {
 				/* Get the configuration object
 				*/
-				var configuration = mapping.filter(function(e) e.name == columnKey)[0];
+				var configuration = searchArray[0];
 				
 				/* Get the value of the second column
 				*/
