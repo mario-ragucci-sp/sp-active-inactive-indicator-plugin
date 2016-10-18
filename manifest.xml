@@ -11,7 +11,7 @@
                                 <entry key="IsActiveIndicator">
                                     <value>
                                         <Plugin uniqueName="ActiveInactiveIndicator" displayName="Active/Inactive Indicator" enabled="true"
-                                                version="0.7.2" allowDisable="true" visible="true" allowUninstall="true"
+                                                version="0.7.5" allowDisable="true" visible="true" allowUninstall="true"
                                                 minFrameworkVersion="0.5.0" maxFrameworkVersion="1.0.0"
                                                 minUpgradableVersion="0.0.1" certificationLevel="BASIC">
                                             <PluginConfiguration>

@@ -9,6 +9,11 @@ This is a proof of concept javascript snipped, utilized by the SailPoint Plugin 
 ## Installation
 
 The installation of the plugin does not differ from the installation of other plugins. Head to the plugins page of IdentityIQ and drop the zip file to the drop area.
+To activate the True/False indicators on the identity list page (define/identity.jsf), you will also need to modify your UI-Configuration. Lookup the configuration for the identity list view and add one of the supplied renderer to your attribute.
+In example, to show the reversed inactive (=active) state, you would add something like
+```xml
+<ColumnConfig dataIndex="inactive" headerKey="Active" hideable="true" property="inactive" renderer="SailPoint.Define.Grid.Identity.reverseTrueFalseRenderer" sortProperty="inactive" sortable="true" stateId="inactive"/>
+```
 
 ## License
 Copyright (c) 2016 Mario Enrico Ragucci, SailPoint Technologies GmbH
