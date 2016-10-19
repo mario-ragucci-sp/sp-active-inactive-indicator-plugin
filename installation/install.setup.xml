@@ -1,2 +1,4 @@
 <!DOCTYPE sailpoint PUBLIC "sailpoint.dtd" "sailpoint.dtd">
-<sailpoint/>
+<sailpoint>
+    <ImportAction name='include' value='{plugin_root}/installation/UIConfig.xml'/>
+</sailpoint>

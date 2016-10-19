@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<!DOCTYPE sailpoint PUBLIC "sailpoint.dtd" "sailpoint.dtd">
+<sailpoint>
+	<ImportAction name="merge">
+<UIConfig name="UIConfig">
+  <Attributes>
+		<Map>
+			<entry key="identityTableColumns">
+				<value>
+				  <List>
+					<ColumnConfig dataIndex="inactive" headerKey="Active" hideable="true" property="inactive" renderer="SailPoint.Define.Grid.Identity.reverseTrueFalseRenderer" sortProperty="inactive" sortable="true" stateId="inactive"/>
+				  </List>
+					</value>
+			</entry>
+		</Map>
+	</Attributes>
+</UIConfig>
+</ImportAction>
+</sailpoint>
