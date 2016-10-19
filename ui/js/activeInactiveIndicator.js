@@ -24,56 +24,70 @@ var mapping = [
     name: "Inactive",
     settings: {
 		setNewName: true,
-		newName: "Active",
-		invertBoolean: true
+		newName: "Status",
+		invertBoolean: true,
+		activeLabel: "Active",
+		inactiveLabel: "Inactive"
     }
   },
   { /*de*/
     name: "Inaktiv",
     settings: {
 		setNewName: true,
-		newName: "Aktiv",
-		invertBoolean: true
+		newName: "Status",
+		invertBoolean: true,
+		activeLabel: "Aktiv",
+		inactiveLabel: "Inaktiv"
     }
   },
   { /*es*/
     name: "Inactivo",
     settings: {
 		setNewName: true,
-		newName: "Activa",
-		invertBoolean: true
+		newName: "Estatus",
+		invertBoolean: true,
+		activeLabel: "Activa",
+		inactiveLabel: "Inactivo"
     }
   },
   { /*fr*/
     name: "Inactif",
     settings: {
 		setNewName: true,
-		newName: "Actif",
-		invertBoolean: true
+		newName: "Statut",
+		invertBoolean: true,
+		activeLabel: "Actif",
+		inactiveLabel: "Inactif"
     }
   },
   { /*it*/
     name: "Inattive",
     settings: {
 		setNewName: true,
-		newName: "Attivo",
-		invertBoolean: true
+		newName: "Stato",
+		invertBoolean: true,
+		activeLabel: "Attivo",
+		inactiveLabel: "Inattive"
     }
   },
   { /*nl*/
     name: "Inactief",
     settings: {
 		setNewName: true,
-		newName: "Actief",
-		invertBoolean: true
+		newName: "Toestand",
+		invertBoolean: true,
+		activeLabel: "Actief",
+		inactiveLabel: "Inactief"
     }
   },
   { /*pt_BR*/
     name: "Inativo",
     settings: {
 		setNewName: true,
-		newName: "Ativo",
-		invertBoolean: true
+		newName: "Status",
+		invertBoolean: true,
+		activeLabel: "Ativo",
+		inactiveLabel: "Inativo"
     }
   }
 ];
@@ -133,12 +147,15 @@ jQuery(document).ready(function(){
 				/* Check configuration object to see whether or not we have to invert
 				*/
 				var invertBoolean = configuration.settings.invertBoolean;
-				
+				/*Create a div element that will replace the current value
+				*/
+				var divElement = document.createElement("div");
 				/* Assume value is false
 				Set the classname of the childnode to the one responsible for showing
 				a red dot. This is the one used for representing high risk scores
 				*/
-				current.childNodes[3].className = RED_DOT_CLASSNAME;
+				divElement.className = RED_DOT_CLASSNAME;
+				divElement.textContent = configuration.settings.inactiveLabel;
 				
 				/* If value is value, but we shall invert it, do so
 				*/
@@ -146,7 +163,8 @@ jQuery(document).ready(function(){
 					/* Set the classname of the childnode to the one responsible for showing
 					a green dot. This is the one used for representing low risk scores
 					*/
-					current.childNodes[3].className = GREEN_DOT_CLASSNAME;
+					divElement.className = GREEN_DOT_CLASSNAME;
+					divElement.textContent = configuration.settings.activeLabel;
 				}
 				
 				/* Check the actual value of the column
@@ -155,19 +173,21 @@ jQuery(document).ready(function(){
 					/* Set the classname of the childnode to the one responsible for showing
 					a green dot. This is the one used for representing low risk scores
 					*/
-					current.childNodes[3].className = GREEN_DOT_CLASSNAME;
+					divElement.className = GREEN_DOT_CLASSNAME;
+					divElement.textContent = configuration.settings.activeLabel;
 					
 					if(invertBoolean) {
 						/* Set the classname of the childnode to the one responsible for showing
 						a red dot. This is the one used for representing high risk scores
 						*/
-						current.childNodes[3].className = RED_DOT_CLASSNAME;
+						divElement.className = RED_DOT_CLASSNAME;
+						divElement.textContent = configuration.settings.inactiveLabel;
 					}
 				}
 				
-				/* Removing any value of the second column
+				/* Removing any value of the second column, add our new div
 				*/
-				current.childNodes[3].innerText = "";
+				current.childNodes[3].replaceChild(divElement, current.childNodes[3].childNodes[0]);
 				
 				/* Finally checking whether or not to rename the Key column
 				*/
